@@ -1,0 +1,8 @@
+REM Clears traces of Flipper Zero being executed in the PC
+DELAY 300
+GUI r
+DELAY 300
+STRING powershell
+ENTER
+DELAY 300
+
