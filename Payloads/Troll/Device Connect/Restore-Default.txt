@@ -1,0 +1,14 @@
+REM Restores the device connect/disconnect sounds to default settings
+DELAY 300
+GUI r
+DELAY 300
+STRING powershell
+ENTER
+DELAY 300
+ALTSTRING $wshell = New-Object -ComObject WScript.Shell; $connect_default = $wshell.RegRead("HKCU\AppEvents\Schemes\Apps\.Default\DeviceConnect\.Default\"); $disconnect_default = $wshell.RegRead("HKCU\AppEvents\Schemes\Apps\.Default\DeviceDisconnect\.Default\")
+ENTER
+DELAY 500
+ALTSTRING $wshell.RegWrite("HKCU\AppEvents\Schemes\Apps\.Default\DeviceConnect\.Current\",$connect_default,"REG_SZ"); $wshell.RegWrite("HKCU\AppEvents\Schemes\Apps\.Default\DeviceDisconnect\.Current\",$disconnect_default,"REG_SZ");
+DELAY 500
+ENTER
+GUI d

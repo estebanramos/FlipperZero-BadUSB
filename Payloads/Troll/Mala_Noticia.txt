@@ -1,6 +1,0 @@
-DELAY 2000
-GUI r
-DELAY 500
-STRING https://www.youtube.com/shorts/x1Q-PZhbWko
-DELAY 1000
-ENTER
