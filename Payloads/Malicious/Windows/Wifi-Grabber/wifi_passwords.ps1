@@ -14,10 +14,10 @@ For ($x=1; $x -lt $list.count; $x++)
         elseif ($password_output -match "Key Content\W+\:(.+)") {
             $password = (Invoke-Expression -Command "netsh wlan show profile name='$network_name' key=clear" | Select-String "Key Content\W+\:(.+)$").Line.split(':')[1]
         }
-        elseif ($password_output -match "Microsoft: EAP protegido\W+\:(.+)") {
+        elseif ($password_output -match "Microsoft: EAP protegido") {
             $password = "Authenticated with Active Directory"
         }
-        elseif ($password_output -match "Clave de Seguridad\W+\:(.+)") {
+        elseif ($password_output -match "Clave de Seguridad") {
             $password = "No Password";
         }
         $item2 = [PSCustomObject]@{
